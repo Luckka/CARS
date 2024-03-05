@@ -6,6 +6,8 @@ class LeadDatasourceImpl{
   late Database db;
 
   String _username = '';
+  String _phone = '';
+  String _email = '';
 
   get username => _username;
 
@@ -28,11 +30,15 @@ class LeadDatasourceImpl{
 
   }
 
-  setUsername(String username) async{
+  setDateUsers(String username,String email,String phone) async{
     db = await SqFliteDb.sqFliteDb.database;
     db.insert('lead', {
-      'username': username
+      'username': username,
+      'email': email,
+      'phone': phone
     });
     _username = username;
+    _phone = phone;
+    _email = email;
   }
 }

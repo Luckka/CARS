@@ -58,7 +58,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       
 
-      await leadDatasourceImpl.setUsername(event.username);
+      await leadDatasourceImpl.setDateUsers(event.username,event.email,event.phone);
 
       var result = await leadDatasourceImpl.db.rawQuery("select * from lead");
 

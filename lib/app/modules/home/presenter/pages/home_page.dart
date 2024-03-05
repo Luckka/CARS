@@ -29,6 +29,8 @@ class _HomePageState extends State<HomePage> {
   Widget _buildPage(BuildContext context) {
 
     final TextEditingController usernameController = TextEditingController();
+    final TextEditingController phoneController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: BlocBuilder<HomeBloc, HomeState>(
@@ -85,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                                                 }),
                                             SizedBox(height: 12),
                                             TextFormFieldWidget(
-                                                controller: null,
+                                                controller: phoneController,
                                                 hintText: 'Telefone',
                                                 keyboardType: null,
                                                 validator: (value) {
@@ -96,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                                                 }),
                                             SizedBox(height: 12),
                                             TextFormFieldWidget(
-                                                controller: null,
+                                                controller: emailController,
                                                 hintText: 'Email',
                                                 keyboardType: null,
                                                 validator: (value) {
@@ -107,8 +109,9 @@ class _HomePageState extends State<HomePage> {
                                                 }),
                                             SizedBox(height: 12),
                                             InkWell(
-                                              onTap: () {
-                                                widget.homeBloc.add(SendLeadsEvent(username: usernameController.text));
+                                              onTap: (){
+                                                widget.homeBloc.add(SendLeadsEvent(username: usernameController.text, email: emailController.text, phone: phoneController.text));
+                                                Modular.to.pop();
                                               },
                                               child: Container(
                                                 height: 50,
