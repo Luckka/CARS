@@ -4,16 +4,5 @@ import 'package:dart_either/dart_either.dart';
 
 abstract interface class CarsUseCase{
 
-  Future<Either<AppExceptions,CarsEntity>> call({
-  required int id,
-  required int timestampCadastro,
-  required int modeloId,
-  required int ano,
-  required String combustivel,
-  required int numPortas,
-  required String cor,
-  required String nomeModelo,
-  required int value,
-
-  });
+  Future<Either<AppExceptions,List<CarsEntity>>> call();
 }

@@ -1,9 +1,7 @@
-class HomeState{
-  HomeState init(){
-    return HomeState();
-  }
+sealed class HomeState {}
 
-  HomeState clone(){
-    return HomeState();
-  }
-}
+class HomeStateInit extends HomeState{}
+
+class HomeLoadingState extends HomeState{}
+
+class HomeGetCarsState extends HomeState{}

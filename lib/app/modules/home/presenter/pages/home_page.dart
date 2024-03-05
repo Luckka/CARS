@@ -5,20 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class SignUpPage extends StatefulWidget {
-  final homeBloc = Modular.get<HomeBloc>();
-   SignUpPage({super.key});
+class HomePage extends StatefulWidget {
+  final HomeBloc homeBloc;
+  const HomePage({super.key, required this.homeBloc});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-
-   final GlobalKey<FormState> _key = GlobalKey<FormState>();
-
-
-  
+class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +30,25 @@ class _SignUpPageState extends State<SignUpPage> {
       body: BlocBuilder<HomeBloc, HomeState>(
           bloc: widget.homeBloc,
           builder: (context, state) {
+            
+            if(state is HomeStateInit){
+              widget.homeBloc.add(GetCarsEvent());
+            }
 
+            if(state is HomeLoadingState){
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
 
-            return Column();
+            return state is HomeLoadingState ? const Center(child: CircularProgressIndicator(),): ListView.builder(
+              itemCount: widget.homeBloc.listOffCars.length,
+              itemBuilder: (context,index){
+                return Center(
+                  child: Text(widget.homeBloc.listOffCars[index].combustivel ?? '',style: TextStyle(color: Colors.amber),),
+                );
+              }
+            );
           }),
     );
   }

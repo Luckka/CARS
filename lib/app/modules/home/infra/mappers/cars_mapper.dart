@@ -10,7 +10,7 @@ class CarsMapper extends CarsEntity {
       required super.nomeModelo,
       required super.numPortas,
       required super.timestampCadastro,
-      required super.value});
+      required super.valor});
 
  static Map<String, dynamic> toMap(CarsEntity carsEntity) {
     return <String, dynamic>{
@@ -22,20 +22,20 @@ class CarsMapper extends CarsEntity {
       'nomeModelo': carsEntity.nomeModelo,
       'numPortas': carsEntity.numPortas,
       'timestampCadastro': carsEntity.timestampCadastro,
-      'value': carsEntity.value
+      'value': carsEntity.valor
     };
   }
 
   static CarsEntity fromMap(Map<String, dynamic> map) {
     return CarsEntity(
         id: map['id'],
-        timestampCadastro: map['timestampCadastro'],
+        timestampCadastro: map['timestamp_cadastro'],
         modeloId: map['modeloId'],
         ano: map['ano'],
         combustivel: map['combustivel'],
         numPortas: map['numPortas'],
         cor: map['cor'],
-        nomeModelo: map['nomeModelo'],
-        value: map['value']);
+        nomeModelo: map['nome_modelo'],
+        valor: map['valor']);
   }
 }

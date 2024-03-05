@@ -13,13 +13,15 @@ class CarsDatasourceImpl implements CarsDatasource{
   CarsDatasourceImpl({required this.dio});
 
   @override
-  Future<Either<AppExceptions, CarsEntity>> call({required int id, required int timestampCadastro, required int modeloId, required int ano, required String combustivel, required int numPortas, required String cor, required String nomeModelo, required int value}) async{
+  Future<Either<AppExceptions, List<CarsEntity>>> call() async{
     try{
 
-      final result = await dio.post("https://wswork.com.br/cars.json");
+      final result = await dio.get("https://wswork.com.br/cars.json");
+
+        List<CarsEntity> listCards = List.from(result.data['cars']).map((e) => CarsMapper.fromMap(e)).toList();
 
 
-      return Right(CarsMapper.fromMap(result.data));
+      return Right(listCards);
 
     }catch(err,s){
        
