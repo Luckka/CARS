@@ -45,7 +45,10 @@ class _HomePageState extends State<HomePage> {
             return state is HomeLoadingState ? const Center(child: CircularProgressIndicator(),): ListView.builder(
               itemCount: widget.homeBloc.listOffCars.length,
               itemBuilder: (context,index){
-                return CarsWidget(ano: widget.homeBloc.listOffCars[index].ano, nomeModelo: widget.homeBloc.listOffCars[index].nomeModelo, numeroPortas: widget.homeBloc.listOffCars[index].numPortas, cor: widget.homeBloc.listOffCars[index].cor, valor: widget.homeBloc.listOffCars[index].valor, combustivel: widget.homeBloc.listOffCars[index].combustivel);
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CarsWidget(ano: widget.homeBloc.listOffCars[index].ano, nomeModelo: widget.homeBloc.listOffCars[index].nomeModelo, numeroPortas: widget.homeBloc.listOffCars[index].numPortas, cor: widget.homeBloc.listOffCars[index].cor, valor: widget.homeBloc.listOffCars[index].valor, combustivel: widget.homeBloc.listOffCars[index].combustivel),
+                );
               }
             );
           }),
