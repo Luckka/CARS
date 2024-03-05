@@ -1,6 +1,7 @@
 import 'package:cars/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:cars/app/modules/home/presenter/bloc/home_event.dart';
 import 'package:cars/app/modules/home/presenter/bloc/home_state.dart';
+import 'package:cars/app/modules/home/presenter/widgets/cars_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -44,9 +45,7 @@ class _HomePageState extends State<HomePage> {
             return state is HomeLoadingState ? const Center(child: CircularProgressIndicator(),): ListView.builder(
               itemCount: widget.homeBloc.listOffCars.length,
               itemBuilder: (context,index){
-                return Center(
-                  child: Text(widget.homeBloc.listOffCars[index].combustivel ?? '',style: TextStyle(color: Colors.amber),),
-                );
+                return CarsWidget(ano: widget.homeBloc.listOffCars[index].ano, nomeModelo: widget.homeBloc.listOffCars[index].nomeModelo, numeroPortas: widget.homeBloc.listOffCars[index].numPortas, cor: widget.homeBloc.listOffCars[index].cor, valor: widget.homeBloc.listOffCars[index].valor, combustivel: widget.homeBloc.listOffCars[index].combustivel);
               }
             );
           }),

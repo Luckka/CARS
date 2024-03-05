@@ -30,10 +30,10 @@ class CarsMapper extends CarsEntity {
     return CarsEntity(
         id: map['id'],
         timestampCadastro: map['timestamp_cadastro'],
-        modeloId: map['modeloId'],
+        modeloId: map['modelo_id'],
         ano: map['ano'],
         combustivel: map['combustivel'],
-        numPortas: map['numPortas'],
+        numPortas: map['num_portas'],
         cor: map['cor'],
         nomeModelo: map['nome_modelo'],
         valor: map['valor']);
