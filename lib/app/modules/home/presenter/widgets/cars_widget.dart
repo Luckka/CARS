@@ -7,6 +7,7 @@ class CarsWidget extends StatelessWidget {
   final String cor;
   final double valor;
   final String combustivel;
+  final void Function()? onTap;
 
   const CarsWidget(
       {super.key,
@@ -15,7 +16,7 @@ class CarsWidget extends StatelessWidget {
       required this.numeroPortas,
       required this.cor,
       required this.valor,
-      required this.combustivel});
+      required this.combustivel, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class CarsWidget extends StatelessWidget {
             ],
           ),
           InkWell(
-            onTap: () {},
+            onTap: onTap,
             child: Container(
               height: 50,
               width: 100,
