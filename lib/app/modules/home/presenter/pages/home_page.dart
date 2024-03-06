@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:cars/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:cars/app/modules/home/presenter/bloc/home_event.dart';
 import 'package:cars/app/modules/home/presenter/bloc/home_state.dart';
+import 'package:cars/app/modules/home/presenter/utils/post_timeout_listener.dart';
 import 'package:cars/app/modules/home/presenter/widgets/cars_widget.dart';
 import 'package:cars/app/modules/home/presenter/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +30,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildPage(BuildContext context) {
-
     final TextEditingController usernameController = TextEditingController();
     final TextEditingController phoneController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
@@ -37,6 +39,9 @@ class _HomePageState extends State<HomePage> {
           bloc: widget.homeBloc,
           builder: (context, state) {
             if (state is HomeStateInit) {
+              Timer.periodic(Duration(seconds: 5), (timer) {
+                 widget.homeBloc.add(PostLeadsEvent());
+               });
               widget.homeBloc.add(GetCarsEvent());
             }
 
@@ -109,8 +114,17 @@ class _HomePageState extends State<HomePage> {
                                                 }),
                                             SizedBox(height: 12),
                                             InkWell(
-                                              onTap: (){
-                                                widget.homeBloc.add(SendLeadsEvent(username: usernameController.text, email: emailController.text, phone: phoneController.text));
+                                              onTap: () {
+                                                widget.homeBloc.add(
+                                                    CreateLeadsEvent(
+                                                        username:
+                                                            usernameController
+                                                                .text,
+                                                        email: emailController
+                                                            .text,
+                                                        phone: phoneController
+                                                            .text));
+
                                                 Modular.to.pop();
                                               },
                                               child: Container(
