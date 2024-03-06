@@ -1,21 +1,20 @@
 import 'package:cars/app/modules/home/domain/entity/lead_entity.dart';
 
 class LeadMapper extends LeadEntity{
-  LeadMapper({required super.email, required super.username, required super.id, required super.phone});
+  LeadMapper({required super.email, required super.username, required super.phone, required super.id});
 
 
-  static Map<String, dynamic> toMap(LeadEntity leadEntity) {
+   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'username': leadEntity.username,
-      'email': leadEntity.email,
-      'phone': leadEntity.phone,
-      'id': leadEntity.id,
+      'username': username,
+      'email': email,
+      'phone': phone,
     };
   }
    
   
-  LeadEntity fromMap(Map<String,dynamic> map){
-    return LeadEntity(email: email, username: username, id: id, phone: phone);
+  factory LeadMapper.fromMap(Map<String,dynamic> map){
+    return LeadMapper(email: map['email'], username: map['username'], phone: map['phone'],id: map['id']);
   }
   
 }

@@ -11,8 +11,8 @@ class LeadUseCaseImpl implements LeadUseCase{
   LeadUseCaseImpl({required this.leadRepository});
 
   @override
-  Future<void> call({required String username, required String phone, required String email}) async{
-    final result = await leadRepository.call(username: username, phone: phone, email: email);
+  Future<void> call() async{
+    final result = await leadRepository.call();
 
     return result;
   }

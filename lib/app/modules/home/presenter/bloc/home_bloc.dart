@@ -38,7 +38,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
      
     var result = await leadDatasourceImpl.db.rawQuery("select * from lead");
 
-    print(result);
+   
      
 
     
@@ -61,20 +61,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       
 
-      await leadDatasourceImpl.setDateUsers(event.username,event.email,event.phone);
+      await leadDatasourceImpl.setDateUsers(event.leadMapper);
 
      
 
       var result = await leadDatasourceImpl.db.rawQuery("select * from lead");
 
-      print(result);
-
+     
      
 
   }
 
   Future<void> _postLeadsEvent(PostLeadsEvent event, Emitter<HomeState> emit) async{
 
-       await leadUseCase.call(username: '', phone: '', email: '');
+       await leadUseCase.call();
   }
 }

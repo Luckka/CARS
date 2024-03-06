@@ -15,7 +15,7 @@ import 'presenter/pages/home_page.dart';
 class HomeModule extends Module{
   @override
   List<Bind<Object>> get binds => [
-    Bind.lazySingleton((i) => LeadDatasourceImpl(dio: i())),
+    Bind.lazySingleton((i) => LeadDatasourceImpl()),
     Bind.lazySingleton((i) => LeadRepositoryImpl(leadDatasource: i())),
     Bind.lazySingleton((i) => LeadUseCaseImpl(leadRepository: i())),
     Bind.lazySingleton((i) => HomeBloc(carsUseCase: i(), leadUseCase: i(), leadDatasourceImpl: i())),

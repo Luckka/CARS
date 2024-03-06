@@ -4,5 +4,5 @@ class LeadEntity{
   final int id;
   final String phone;
 
-  LeadEntity({required this.email, required this.username, required this.id, required this.phone});
+  LeadEntity({required this.email, required this.username, required this.phone, required this.id, });
 }
