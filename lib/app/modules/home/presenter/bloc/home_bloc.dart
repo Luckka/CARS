@@ -49,7 +49,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
        print(l.message);
     },
     ifRight: (r) {
-      print('TEST: ${r[0].timestampCadastro}');
       	listOffCars = r;
     });
 
